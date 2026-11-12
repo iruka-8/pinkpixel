@@ -1,0 +1,412 @@
+:root {
+  --pink-50: #fff0f5;
+  --pink-100: #ffe4ee;
+  --pink-200: #ffc9de;
+  --pink-300: #ff9ec4;
+  --pink-400: #ff69a3;
+  --pink-500: #ff3b88;
+  --pink-600: #e01e6b;
+  --pink-800: #7a123c;
+  --surface: #ffffff;
+  --border: #f8b4d0;
+  --shadow: 0 6px 20px rgba(255, 59, 136, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--pink-50);
+  background-image: radial-gradient(var(--pink-200) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  color: var(--pink-800);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.app-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100vh;
+}
+
+/* ヘッダー */
+.header {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 1.5rem;
+  color: var(--pink-500);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ボタン共通 */
+.btn {
+  background: var(--pink-100);
+  color: var(--pink-800);
+  border: 1.5px solid var(--pink-300);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--pink-200);
+  transform: translateY(-1px);
+}
+
+.btn.active, .btn-primary {
+  background: var(--pink-500);
+  color: #fff;
+  border-color: var(--pink-600);
+}
+
+.btn-primary:hover {
+  background: var(--pink-600);
+}
+
+.select-box {
+  background: var(--pink-50);
+  border: 1.5px solid var(--pink-300);
+  border-radius: 10px;
+  padding: 6px 10px;
+  color: var(--pink-800);
+  font-weight: 700;
+  font-family: inherit;
+}
+
+/* メインワークスペース */
+.workspace {
+  display: grid;
+  grid-template-columns: 270px 1fr 290px;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--pink-600);
+  margin: 0;
+  padding-bottom: 6px;
+  border-bottom: 2px dashed var(--pink-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ツールグリッド */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+/* カラーピッカー */
+.color-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.current-color-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid var(--pink-400);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-image:
+    linear-gradient(45deg, #eee 25%, transparent 25%),
+    linear-gradient(-45deg, #eee 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #eee 75%),
+    linear-gradient(-45deg, transparent 75%, #eee 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+}
+
+.current-color-fill {
+  width: 100%;
+  height: 100%;
+}
+
+.hex-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1.5px solid var(--pink-300);
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--pink-800);
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-row label {
+  width: 24px;
+  font-weight: 700;
+}
+
+.slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--pink-500);
+}
+
+.hue-slider {
+  -webkit-appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.swatch {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.swatch:hover {
+  transform: scale(1.12);
+}
+
+.swatch.selected {
+  border-color: var(--pink-800);
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+/* キャンバスエリア & 拡大縮小対応 */
+.canvas-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.zoom-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 6px 14px;
+  box-shadow: var(--shadow);
+}
+
+.zoom-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 52px;
+  text-align: center;
+  color: var(--pink-600);
+}
+
+/* 固定サイズの表示枠（拡大時はこの枠内でスクロール） */
+.canvas-viewport {
+  width: 500px;
+  height: 500px;
+  max-width: 100%;
+  border: 4px solid var(--pink-400);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: auto;
+  display: flex;
+  background-color: var(--pink-100);
+}
+
+@media (max-width: 600px) {
+  .canvas-viewport {
+    width: 340px;
+    height: 340px;
+  }
+}
+
+.canvas-viewport::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.canvas-viewport::-webkit-scrollbar-thumb {
+  background: var(--pink-400);
+  border-radius: 5px;
+}
+
+.canvas-viewport::-webkit-scrollbar-track {
+  background: var(--pink-100);
+}
+
+/* 実際にズーム倍率に応じて伸び縮みするキャンバス本体 */
+.canvas-wrapper {
+  margin: auto;
+  flex-shrink: 0;
+  touch-action: none;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(45deg, #fce7f0 25%, transparent 25%),
+    linear-gradient(-45deg, #fce7f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #fce7f0 75%),
+    linear-gradient(-45deg, transparent 75%, #fce7f0 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+}
+
+.pixel-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
+.pixel-cell {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.pixel-grid.show-grid .pixel-cell {
+  border-right: 1px solid rgba(255, 105, 163, 0.25);
+  border-bottom: 1px solid rgba(255, 105, 163, 0.25);
+}
+
+/* アニメーション・タイムライン */
+.preview-box {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  border: 3px solid var(--pink-300);
+  border-radius: 12px;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #fce7f0 25%, transparent 25%),
+    linear-gradient(-45deg, #fce7f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #fce7f0 75%),
+    linear-gradient(-45deg, transparent 75%, #fce7f0 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preview-canvas {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.frames-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.frame-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: var(--pink-50);
+  border: 2px solid var(--pink-200);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.frame-item.active {
+  background: var(--pink-100);
+  border-color: var(--pink-500);
+}
+
+.frame-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-btn {
+  background: #fff;
+  border: 1px solid var(--pink-300);
+  color: var(--pink-600);
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-btn:hover {
+  background: var(--pink-200);
+}
